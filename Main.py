@@ -2,7 +2,8 @@ import os
 import numpy as np
 import pandas as pd
 from utils.tools import create_directory
-from sktime.utils.load_data import load_from_tsfile_to_dataframe
+# import sktime
+from sktime.datasets import load_from_tsfile_to_dataframe
 from utils.data_loader import process_ts_data
 
 pd.set_option('display.max_rows', 500)
@@ -175,7 +176,7 @@ for problem in os.listdir(data_path):
             # batch_size = np.ceil(x_train.shape[0] / (8 * (np.max(y_train.shape[1]) + 1)))
             batch_size = 8
             
-        val_index = np.random.randint(0, np.int(x_train.shape[0]), np.int(x_train.shape[0] / 10), dtype=int)
+        val_index = np.random.randint(0, int(x_train.shape[0]), int(x_train.shape[0] / 10), dtype=int)
         x_val = x_train[val_index, :]
         y_val = y_train[val_index, :]
 
